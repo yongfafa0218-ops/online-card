@@ -138,7 +138,7 @@
      ============================================================ */
   function renderName() {
     $("#app").setAttribute("data-turn", "A");
-    setHead("맘풀고 <b>웜업</b>", "맛보기", false);
+    setHead("맘풀고 대화 게임카드 <b>웜업</b>", "맛보기", false);
     showFab(false);   // 이름 입력 중엔 버튼이 가리므로 숨김
 
     $("#body").innerHTML =
@@ -217,7 +217,7 @@
   function renderPick() {
     showFab(true);
     $("#app").setAttribute("data-turn", "A");
-    setHead("맘풀고 <b>웜업</b>", "맛보기", false);
+    setHead("맘풀고 대화 게임카드 <b>웜업</b>", "맛보기", false);
 
     var deck = CARDS.map(function (c, i) {
       return '<button class="dcard deal" style="animation-delay:' + (i * 0.05 + 0.05) + 's" ' +
@@ -258,7 +258,7 @@
   function renderIntro() {
     showFab(true);
     $("#app").setAttribute("data-turn", "A");
-    setHead("맘풀고 <b>웜업</b>", S.card.no + ". " + S.card.title, false);
+    setHead("맘풀고 대화 게임카드 <b>웜업</b>", S.card.no + ". " + S.card.title, false);
 
     $("#body").innerHTML =
       '<div class="intro">' +
@@ -314,7 +314,7 @@
 
     var t = S.card.turns[S.turn];
     $("#app").setAttribute("data-turn", t.who);
-    setHead("맘풀고 <b>웜업</b>", S.card.no + ". " + S.card.title, true);
+    setHead("맘풀고 대화 게임카드 <b>웜업</b>", S.card.no + ". " + S.card.title, true);
 
     var h = '<div class="turnhead anim">' +
       '<div class="th-dot">' + t.who + '</div>' +
@@ -393,7 +393,7 @@
     showFab(false);   // 하단 버튼 3개와 겹치므로 숨김
     if (timerId) { clearInterval(timerId); timerId = null; }
     $("#app").setAttribute("data-turn", "A");
-    setHead("맘풀고 <b>웜업 완료</b>", S.card.no + ". " + S.card.title, true);
+    setHead("맘풀고 대화 게임카드 <b>웜업 완료</b>", S.card.no + ". " + S.card.title, true);
 
     $("#body").innerHTML =
       '<div class="done-wrap anim">' +

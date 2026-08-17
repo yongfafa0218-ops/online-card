@@ -50,15 +50,16 @@ button{font-family:inherit;}
 .app[data-turn="B"]{--c:var(--sky);--c-d:var(--sky-d);}
 
 /* ---------- 헤더 ---------- */
-.hd{flex:0 0 auto;padding:15px 20px 12px;}
+.hd{flex:0 0 auto;padding:20px 20px 14px;}
 .hd-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.hd-brand{display:flex;align-items:center;gap:7px;min-width:0;}
-.hd-mark{width:26px;height:26px;flex:0 0 auto;object-fit:contain;margin-top:-1px;}
-.hd-title{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.2px;}
+.hd-brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto;}
+.hd-mark{width:34px;height:auto;flex:0 0 auto;object-fit:contain;}
+.hd-title{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:-.2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hd-title b{color:var(--ink-2);font-weight:800;}
-.hd-card{font-size:11px;font-weight:700;color:var(--ink-3);white-space:nowrap;}
+.hd-card{font-size:10.5px;font-weight:700;color:var(--ink-3);white-space:nowrap;flex:0 0 auto;}
 
-.stepper{display:flex;gap:5px;margin-top:12px;}
+.stepper{display:flex;gap:5px;margin-top:14px;}
 .step{flex:1;height:3px;border-radius:99px;background:#E7E2DA;transition:background .4s ease;}
 .step.done{background:var(--c);}
 .step.now{background:var(--c-d);}
@@ -134,7 +135,7 @@ button{font-family:inherit;}
   background:var(--cue);border-radius:22px;
   padding:22px;margin-bottom:18px;
   display:flex;align-items:center;justify-content:center;
-  flex:1 1 auto;min-height:96px;max-height:210px;
+  flex:1 1 auto;min-height:84px;max-height:210px;
   box-shadow:0 2px 10px rgba(32,30,31,.05);
 }
 .cuecard p{
@@ -219,9 +220,9 @@ button{font-family:inherit;}
 /* ============================================================
    완료 / 메모
    ============================================================ */
-.done-wrap{text-align:center;padding:26px 4px 0;}
+.done-wrap{text-align:center;padding:34px 4px 0;}
 .done-emo{font-size:44px;line-height:1;}
-.done-mark{width:86px;height:86px;object-fit:contain;display:block;margin:0 auto;}
+.done-mark{width:150px;height:auto;object-fit:contain;display:block;margin:0 auto 4px;}
 .done-h{font-size:21px;font-weight:800;margin:13px 0 8px;letter-spacing:-.5px;}
 .done-p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-bottom:18px;}
 
@@ -263,19 +264,56 @@ button{font-family:inherit;}
 
 /* ---------- 작은 화면 ---------- */
 @media (max-height:720px){
+  .pick-h{padding:2px 0 12px;}
+  .pick-h .ph-2{font-size:19px;}
+  .deck{gap:9px;}
+  .dcard{padding:11px 10px 10px;}
+  .dc-tt{font-size:14px;margin-bottom:5px;}
+  .dc-ac{font-size:10.5px;}
+  .pick-rand{margin-top:9px;padding:12px;}
+  .hd{padding:14px 20px 11px;}
+  .hd-mark{width:29px;}
+  .stepper{margin-top:11px;}
+  .done-mark{width:120px;}
+  .done-wrap{padding:22px 4px 0;}
   .sc-line{font-size:19.5px;}
   .intro-title{font-size:25px;}
-  .cuecard{min-height:88px;padding:18px 16px;margin-bottom:14px;}
+  .cuecard{min-height:72px;padding:14px 14px;margin-bottom:11px;}
   .cuecard p{font-size:18.5px;}
   .intro-band{margin:12px 0 16px;}
   .ordertxt{margin-bottom:13px;}
   .btn{padding:15px;font-size:15.5px;}
   .who2{padding-top:11px;}
 }
+@media (max-height:580px){
+  .nm-logo{width:min(40%,118px);margin-bottom:7px;}
+  .nm-h{font-size:18px;}
+  .nm-p{display:none;}
+  .nm-f input{padding:11px 12px;font-size:15px;}
+  .nm-f label{margin-bottom:5px;}
+  .nm-tip{display:none;}
+  .pick-h{padding:0 0 9px;}
+  .pick-h .ph-1{margin-bottom:5px;}
+  .pick-h .ph-2{font-size:17px;}
+  .dc-ac{display:none;}
+  .dcard{padding:10px 9px 9px;}
+  .intro-band{display:none;}
+  .cuecard{min-height:48px;}
+}
 @media (max-height:620px){
+  .hd{padding:11px 18px 9px;}
+  .hd-mark{width:25px;}
+  .hd-title{font-size:11px;}
+  .stepper{margin-top:9px;}
+  .done-mark{width:96px;}
+  .done-wrap{padding:14px 4px 0;}
+  .done-h{font-size:19px;margin:9px 0 6px;}
+  .done-p{font-size:12.5px;margin-bottom:12px;}
+  .done-next{padding:12px 14px;}
+  .dn-t{font-size:12.5px;}
   .sc-line{font-size:18px;line-height:1.55;}
   .sc-1{margin-bottom:13px;}
-  .cuecard{min-height:72px;padding:14px 12px;margin-bottom:11px;border-radius:16px;}
+  .cuecard{min-height:56px;padding:11px 12px;margin-bottom:9px;border-radius:14px;}
   .cuecard p{font-size:16.5px;}
   .intro-band{margin:9px 0 11px;padding:8px 12px;font-size:11.5px;}
   .intro-title{font-size:22px;}
