@@ -1,0 +1,16 @@
+{
+  "name": "맘풀고 대화 게임카드 웜업",
+  "short_name": "맘풀고",
+  "description": "마음을 프리하게, 맘풀고. 대본을 따라 읽으며 입을 떼는 대화 훈련 웜업.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "lang": "ko",
+  "icons": [
+    { "src": "assets/img/favicon.png", "sizes": "64x64",   "type": "image/png" },
+    { "src": "assets/img/icon.png",    "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

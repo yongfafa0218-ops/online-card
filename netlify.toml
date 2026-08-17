@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+# iframe 임베드 허용: X-Frame-Options 대신 CSP frame-ancestors 사용
+# mampulgo.com 에서만 iframe 임베드를 허용한다.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'self' https://mampulgo.com https://*.mampulgo.com"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# 정적 자산 캐시 (워딩 수정 시 즉시 반영되도록 짧게)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
