@@ -27,7 +27,7 @@
     nameA: CFG.DEFAULT_A,
     nameB: CFG.DEFAULT_B,
     turn: 0,
-    phase: "pick"    // pick | intro | play | done
+    phase: "name"    // name | pick | intro | play | done
   };
 
   /* ------------------------------------------------------------
@@ -114,6 +114,7 @@
      렌더링
      ============================================================ */
   function render() {
+    if (S.phase === "name")  return renderName();
     if (S.phase === "pick")  return renderPick();
     if (S.phase === "intro") return renderIntro();
     if (S.phase === "done")  return renderDone();
@@ -133,9 +134,88 @@
   }
 
   /* ============================================================
+     이름 입력 — 두 사람이 서로를 부를 이름
+     ============================================================ */
+  function renderName() {
+    $("#app").setAttribute("data-turn", "A");
+    setHead("맘풀고 <b>웜업</b>", "맛보기", false);
+    showFab(false);   // 이름 입력 중엔 버튼이 가리므로 숨김
+
+    $("#body").innerHTML =
+      '<div class="nm anim">' +
+        '<div class="nm-lead">' +
+          '<div class="nm-tag">맘풀고 대화 훈련</div>' +
+          '<h1 class="nm-h">서로를 부를 이름을<br>넣어주세요</h1>' +
+          '<p class="nm-p">휴대폰 한 대를 사이에 두고<br>마주 앉아 진행합니다.</p>' +
+        '</div>' +
+        '<div class="nm-fields">' +
+          '<div class="nm-f nm-a">' +
+            '<label for="inA">먼저 읽는 사람 <span>A</span></label>' +
+            '<input id="inA" type="text" maxlength="10" placeholder="예) 지현, 엄마" autocomplete="off" />' +
+          '</div>' +
+          '<div class="nm-f nm-b">' +
+            '<label for="inB">받아 읽는 사람 <span>B</span></label>' +
+            '<input id="inB" type="text" maxlength="10" placeholder="예) 민수, 아들" autocomplete="off" />' +
+          '</div>' +
+        '</div>' +
+        '<div class="nm-err" id="nmErr"></div>' +
+        '<div class="nm-tip">실제 이름도, <b>엄마·여보·아들</b> 같은 호칭도 좋아요</div>' +
+      '</div>';
+
+    setFoot("시작하기", true, submitName, "");
+
+    var a = $("#inA"), bEl = $("#inB");
+    // 이전 입력 복구
+    try {
+      var sa = sessionStorage.getItem("mpg_a"), sb = sessionStorage.getItem("mpg_b");
+      if (sa) a.value = sa;
+      if (sb) bEl.value = sb;
+    } catch (e) {}
+    // URL 파라미터가 있으면 우선 채움
+    var qa = qp("userA", ""), qb = qp("userB", "");
+    if (qa) a.value = qa;
+    if (qb) bEl.value = qb;
+
+    [a, bEl].forEach(function (el) {
+      el.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter") {
+          if (el === a && !bEl.value.trim()) { bEl.focus(); return; }
+          submitName();
+        }
+      });
+    });
+    setTimeout(function () { if (!a.value) a.focus(); }, 260);
+  }
+
+  function submitName() {
+    var a = $("#inA").value.trim();
+    var b = $("#inB").value.trim();
+    var err = $("#nmErr");
+
+    if (!a || !b) {
+      err.textContent = "두 분의 이름을 모두 넣어주세요.";
+      err.classList.add("on");
+      $(a ? "#inB" : "#inA").focus();
+      return;
+    }
+    if (a === b) {
+      err.textContent = "서로 다르게 넣어주세요.";
+      err.classList.add("on");
+      $("#inB").focus();
+      return;
+    }
+    err.classList.remove("on");
+
+    S.nameA = a; S.nameB = b;
+    try { sessionStorage.setItem("mpg_a", a); sessionStorage.setItem("mpg_b", b); } catch (e) {}
+    S.phase = "pick"; save(); go();
+  }
+
+  /* ============================================================
      [개선 3] 카드 고르기 — 실물 카드를 뽑듯이
      ============================================================ */
   function renderPick() {
+    showFab(true);
     $("#app").setAttribute("data-turn", "A");
     setHead("맘풀고 <b>웜업</b>", "맛보기", false);
 
@@ -176,6 +256,7 @@
      인트로 — 실물 카드 레이아웃 재현
      ============================================================ */
   function renderIntro() {
+    showFab(true);
     $("#app").setAttribute("data-turn", "A");
     setHead("맘풀고 <b>웜업</b>", S.card.no + ". " + S.card.title, false);
 
@@ -228,6 +309,7 @@
   var timerId = null;
 
   function renderTurn() {
+    showFab(true);
     if (timerId) { clearInterval(timerId); timerId = null; }
 
     var t = S.card.turns[S.turn];
@@ -308,6 +390,7 @@
 
   /* ---------- 완료 화면 ---------- */
   function renderDone() {
+    showFab(true);
     if (timerId) { clearInterval(timerId); timerId = null; }
     $("#app").setAttribute("data-turn", "A");
     setHead("맘풀고 <b>웜업 완료</b>", S.card.no + ". " + S.card.title, true);
@@ -328,12 +411,21 @@
     var f = $("#foot");
     f.innerHTML =
       '<button class="btn" id="homeBtn">맘풀고 홈으로 가기</button>' +
-      '<button class="btn btn-ghost" id="againBtn">↻ 다른 카드로 한 번 더</button>';
+      '<button class="btn btn-ghost" id="againBtn">↻ 다른 카드로 한 번 더</button>' +
+      '<button class="btn-text" id="nameBtn">이름 바꾸기</button>';
 
     $("#homeBtn").addEventListener("click", goHome);
     $("#againBtn").addEventListener("click", function () {
       S.card = null; S.turn = 0; S.phase = "pick";
       try { sessionStorage.removeItem("mompulgo_state"); } catch (e) {}
+      go();
+    });
+    $("#nameBtn").addEventListener("click", function () {
+      S.card = null; S.turn = 0; S.phase = "name";
+      try {
+        sessionStorage.removeItem("mompulgo_state");
+        sessionStorage.removeItem("mompulgo_card");
+      } catch (e) {}
       go();
     });
   }
@@ -358,6 +450,13 @@
   }
   function restore() {
     try {
+      /* 이름 먼저 복구 (새로고침해도 다시 안 물어보도록) */
+      var sa = sessionStorage.getItem("mpg_a"), sb = sessionStorage.getItem("mpg_b");
+      if (sa && sb) {
+        S.nameA = sa; S.nameB = sb;
+        if (S.phase === "name") S.phase = "pick";
+      }
+
       var raw = sessionStorage.getItem("mompulgo_state");
       if (!raw) return;
       var o = JSON.parse(raw);
@@ -451,6 +550,12 @@
     if (el) el.classList.remove("on");
   }
 
+  /* FAB 표시/숨김 */
+  function showFab(on) {
+    var f = $("#rcFab");
+    if (f) f.style.display = on ? "" : "none";
+  }
+
   /* 화면 우하단 상시 버튼 */
   function mountRuleFab() {
     if ($("#rcFab")) return;
@@ -465,15 +570,22 @@
   /* ---------- 시작 ---------- */
   function start() {
     mountRuleFab();
-    S.nameA = qp("userA", CFG.DEFAULT_A);
-    S.nameB = qp("userB", CFG.DEFAULT_B);
 
-    /* URL로 카드가 지정되면 고르기 단계를 건너뜀 */
+    /* URL에 이름이 둘 다 있으면 입력 화면을 건너뛴다 (워드프레스에서 넘겨줄 때) */
+    var qa = qp("userA", ""), qb = qp("userB", "");
+    if (qa && qb) {
+      S.nameA = qa; S.nameB = qb;
+      S.phase = "pick";
+      try { sessionStorage.setItem("mpg_a", qa); sessionStorage.setItem("mpg_b", qb); } catch (e) {}
+    }
+
+    /* URL로 카드까지 지정되면 인트로부터 */
     var want = qp("card", null);
-    if (want) {
+    if (want && S.phase === "pick") {
       var c = findCard(want);
       if (c) { S.card = c; S.phase = "intro"; }
     }
+
     if (!S.card) restore();
     go();
   }
