@@ -52,6 +52,8 @@ button{font-family:inherit;}
 /* ---------- 헤더 ---------- */
 .hd{flex:0 0 auto;padding:15px 20px 12px;}
 .hd-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.hd-brand{display:flex;align-items:center;gap:7px;min-width:0;}
+.hd-mark{width:26px;height:26px;flex:0 0 auto;object-fit:contain;margin-top:-1px;}
 .hd-title{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.2px;}
 .hd-title b{color:var(--ink-2);font-weight:800;}
 .hd-card{font-size:11px;font-weight:700;color:var(--ink-3);white-space:nowrap;}
@@ -219,6 +221,7 @@ button{font-family:inherit;}
    ============================================================ */
 .done-wrap{text-align:center;padding:26px 4px 0;}
 .done-emo{font-size:44px;line-height:1;}
+.done-mark{width:86px;height:86px;object-fit:contain;display:block;margin:0 auto;}
 .done-h{font-size:21px;font-weight:800;margin:13px 0 8px;letter-spacing:-.5px;}
 .done-p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-bottom:18px;}
 
@@ -391,8 +394,7 @@ button{font-family:inherit;}
    ============================================================ */
 .nm{display:flex;flex-direction:column;height:100%;}
 .nm-lead{text-align:center;padding:8px 0 24px;}
-.nm-tag{display:inline-block;background:var(--a-soft,#FDF2ED);color:var(--coral-d);
-  font-size:11px;font-weight:800;letter-spacing:.5px;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
+.nm-logo{display:block;width:min(72%,220px);height:auto;margin:0 auto 18px;}
 .nm-h{font-size:26px;font-weight:800;letter-spacing:-.7px;line-height:1.4;margin:0 0 12px;
   word-break:keep-all;color:var(--ink);}
 .nm-p{font-size:13.5px;line-height:1.7;color:var(--ink-2);margin:0;word-break:keep-all;}
@@ -427,6 +429,7 @@ button{font-family:inherit;}
 
 @media (max-height:700px){
   .nm-h{font-size:23px;}
+  .nm-logo{width:min(60%,180px);margin-bottom:12px;}
   .nm-lead{padding:4px 0 18px;}
   .nm-f input{padding:13px 12px;}
   .nm-fields{gap:11px;}
@@ -435,6 +438,6 @@ button{font-family:inherit;}
   .nm-h{font-size:20px;margin-bottom:8px;}
   .nm-p{font-size:12.5px;}
   .nm-lead{padding:2px 0 14px;}
-  .nm-tag{margin-bottom:11px;}
+  .nm-logo{width:min(48%,140px);margin-bottom:9px;}
   .nm-tip{padding-top:12px;}
 }

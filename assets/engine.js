@@ -144,7 +144,7 @@
     $("#body").innerHTML =
       '<div class="nm anim">' +
         '<div class="nm-lead">' +
-          '<div class="nm-tag">맘풀고 대화 훈련</div>' +
+          '<img class="nm-logo" src="assets/img/logo.png" alt="맘풀고 · 마음을 프리하게" />' +
           '<h1 class="nm-h">서로를 부를 이름을<br>넣어주세요</h1>' +
           '<p class="nm-p">휴대폰 한 대를 사이에 두고<br>마주 앉아 진행합니다.</p>' +
         '</div>' +
@@ -390,14 +390,14 @@
 
   /* ---------- 완료 화면 ---------- */
   function renderDone() {
-    showFab(true);
+    showFab(false);   // 하단 버튼 3개와 겹치므로 숨김
     if (timerId) { clearInterval(timerId); timerId = null; }
     $("#app").setAttribute("data-turn", "A");
     setHead("맘풀고 <b>웜업 완료</b>", S.card.no + ". " + S.card.title, true);
 
     $("#body").innerHTML =
       '<div class="done-wrap anim">' +
-        '<div class="done-emo">🎉</div>' +
+        '<img class="done-mark" src="assets/img/mark.png" alt="" />' +
         '<div class="done-h">6턴, 끝까지 오셨네요</div>' +
         '<div class="done-p">' + esc(withJosa("A","과","와")) + ' ' + esc(label("B")) + ',<br>' +
         '방금 서로의 마음을 여섯 번 주고받으셨습니다.</div>' +
