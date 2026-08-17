@@ -50,10 +50,10 @@ button{font-family:inherit;}
 .app[data-turn="B"]{--c:var(--sky);--c-d:var(--sky-d);}
 
 /* ---------- 헤더 ---------- */
-.hd{flex:0 0 auto;padding:20px 20px 14px;}
+.hd{flex:0 0 auto;padding:22px 20px 15px;}
 .hd-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .hd-brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto;}
-.hd-mark{width:34px;height:auto;flex:0 0 auto;object-fit:contain;}
+.hd-mark{width:40px;height:auto;flex:0 0 auto;object-fit:contain;}
 .hd-title{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:-.2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hd-title b{color:var(--ink-2);font-weight:800;}
@@ -222,7 +222,7 @@ button{font-family:inherit;}
    ============================================================ */
 .done-wrap{text-align:center;padding:34px 4px 0;}
 .done-emo{font-size:44px;line-height:1;}
-.done-mark{width:150px;height:auto;object-fit:contain;display:block;margin:0 auto 4px;}
+.done-mark{width:190px;height:auto;object-fit:contain;display:block;margin:0 auto 10px;}
 .done-h{font-size:21px;font-weight:800;margin:13px 0 8px;letter-spacing:-.5px;}
 .done-p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-bottom:18px;}
 
@@ -263,7 +263,7 @@ button{font-family:inherit;}
 .deal{animation:dealIn .4s cubic-bezier(.22,.9,.3,1) both;}
 
 /* ---------- 작은 화면 ---------- */
-@media (max-height:720px){
+@media (max-height:720px) and (max-width:520px){
   .pick-h{padding:2px 0 12px;}
   .pick-h .ph-2{font-size:19px;}
   .deck{gap:9px;}
@@ -272,9 +272,9 @@ button{font-family:inherit;}
   .dc-ac{font-size:10.5px;}
   .pick-rand{margin-top:9px;padding:12px;}
   .hd{padding:14px 20px 11px;}
-  .hd-mark{width:29px;}
+  .hd-mark{width:34px;}
   .stepper{margin-top:11px;}
-  .done-mark{width:120px;}
+  .done-mark{width:150px;}
   .done-wrap{padding:22px 4px 0;}
   .sc-line{font-size:19.5px;}
   .intro-title{font-size:25px;}
@@ -285,7 +285,7 @@ button{font-family:inherit;}
   .btn{padding:15px;font-size:15.5px;}
   .who2{padding-top:11px;}
 }
-@media (max-height:580px){
+@media (max-height:580px) and (max-width:520px){
   .nm-logo{width:min(40%,118px);margin-bottom:7px;}
   .nm-h{font-size:18px;}
   .nm-p{display:none;}
@@ -300,12 +300,24 @@ button{font-family:inherit;}
   .intro-band{display:none;}
   .cuecard{min-height:48px;}
 }
-@media (max-height:620px){
+@media (max-width:400px) and (max-height:660px){
+  .intro-band{display:none;}
+  .cuecard{min-height:58px;padding:12px;margin-bottom:9px;}
+  .cuecard p{font-size:16px;}
+  .intro-title{font-size:21px;}
+  .ordertxt{font-size:11.5px;margin-bottom:9px;}
+  .emochips{gap:5px;}
+  .ec{padding:7px 3px;font-size:11.5px;}
+  .who2{padding-top:8px;}
+  .w2{padding:8px 5px;font-size:12.5px;}
+  .rc-open-inline{margin-top:7px;padding:9px;font-size:10.5px;}
+}
+@media (max-height:620px) and (max-width:520px){
   .hd{padding:11px 18px 9px;}
-  .hd-mark{width:25px;}
+  .hd-mark{width:29px;}
   .hd-title{font-size:11px;}
   .stepper{margin-top:9px;}
-  .done-mark{width:96px;}
+  .done-mark{width:118px;}
   .done-wrap{padding:14px 4px 0;}
   .done-h{font-size:19px;margin:9px 0 6px;}
   .done-p{font-size:12.5px;margin-bottom:12px;}
@@ -409,7 +421,7 @@ button{font-family:inherit;}
   color:#fff;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;}
 .rc-flip:active,.rc-close:active{transform:scale(.98);}
 
-@media (max-height:640px){
+@media (max-height:640px) and (max-width:520px){
   .rc-inner{height:78vh;}
   .rc-face{padding:20px 18px;}
   .rc-title{font-size:22px;}
@@ -465,17 +477,55 @@ button{font-family:inherit;}
 }
 .btn-text:active{opacity:.6;}
 
-@media (max-height:700px){
+@media (max-height:700px) and (max-width:520px){
   .nm-h{font-size:23px;}
   .nm-logo{width:min(60%,180px);margin-bottom:12px;}
   .nm-lead{padding:4px 0 18px;}
   .nm-f input{padding:13px 12px;}
   .nm-fields{gap:11px;}
 }
-@media (max-height:600px){
+@media (max-height:600px) and (max-width:520px){
   .nm-h{font-size:20px;margin-bottom:8px;}
   .nm-p{font-size:12.5px;}
   .nm-lead{padding:2px 0 14px;}
   .nm-logo{width:min(48%,140px);margin-bottom:9px;}
   .nm-tip{padding-top:12px;}
+}
+
+/* ============================================================
+   가로는 넓지만 세로가 짧은 화면 (노트북·데스크톱 창 축소)
+   → 폭 기반 축소는 걸리지 않으므로 별도 처리
+   ============================================================ */
+@media (min-width:521px) and (max-height:700px){
+  .hd{padding:14px 20px 11px;}
+  .hd-mark{width:34px;}
+  .stepper{margin-top:11px;}
+  .done-wrap{padding:16px 4px 0;}
+  .done-mark{width:130px;margin-bottom:6px;}
+  .done-h{font-size:19px;margin:8px 0 6px;}
+  .done-p{font-size:13px;margin-bottom:12px;}
+  .done-next{padding:13px 15px;}
+  .cuecard{min-height:58px;padding:13px;margin-bottom:10px;}
+  .intro-title{font-size:22px;}
+  .intro-band{margin:8px 0 10px;padding:8px 12px;font-size:11.5px;}
+  .ordertxt{font-size:12px;margin-bottom:10px;}
+  .emochips{gap:6px;}
+  .ec{padding:8px 3px;font-size:12px;}
+  .who2{padding-top:9px;}
+  .w2{padding:9px 6px;font-size:13px;}
+  .rc-open-inline{margin-top:8px;padding:10px;font-size:11px;}
+  .nm-logo{width:min(46%,150px);margin-bottom:10px;}
+  .nm-h{font-size:21px;}
+  .nm-lead{padding:2px 0 14px;}
+}
+@media (min-width:521px) and (max-height:600px){
+  .done-mark{width:104px;}
+  .done-wrap{padding:10px 4px 0;}
+  .done-h{font-size:17px;}
+  .done-p{font-size:12.5px;margin-bottom:10px;}
+  .done-next{padding:11px 13px;}
+  .dn-t{font-size:12.5px;}
+  .nm-logo{width:min(36%,118px);}
+  .nm-p{display:none;}
+  .intro-band{display:none;}
 }
