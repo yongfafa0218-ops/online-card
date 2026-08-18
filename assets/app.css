@@ -54,10 +54,8 @@ button{font-family:inherit;}
 .app[data-turn="B"]{--c:var(--sky);--c-d:var(--sky-d);}
 
 /* ---------- 헤더 ---------- */
-.hd{flex:0 0 auto;padding:26px 20px 18px;}
+.hd{flex:0 0 auto;padding:20px 20px 15px;}
 .hd-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.hd-brand{display:flex;align-items:center;gap:9px;min-width:0;flex:1 1 auto;}
-.hd-mark{width:46px;height:auto;flex:0 0 auto;object-fit:contain;}
 .hd-title{font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:-.2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hd-title b{color:var(--ink-2);font-weight:800;}
@@ -224,9 +222,8 @@ button{font-family:inherit;}
 /* ============================================================
    완료 / 메모
    ============================================================ */
-.done-wrap{text-align:center;padding:34px 4px 0;}
+.done-wrap{text-align:center;padding:44px 4px 0;}
 .done-emo{font-size:44px;line-height:1;}
-.done-mark{width:190px;height:auto;object-fit:contain;display:block;margin:0 auto 10px;}
 .done-h{font-size:21px;font-weight:800;margin:13px 0 8px;letter-spacing:-.5px;}
 .done-p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-bottom:18px;}
 
@@ -275,10 +272,8 @@ button{font-family:inherit;}
   .dc-tt{font-size:14px;margin-bottom:5px;}
   .dc-ac{font-size:10.5px;}
   .pick-rand{margin-top:9px;padding:12px;}
-  .hd{padding:17px 20px 13px;}
-  .hd-mark{width:39px;}
+  .hd{padding:15px 20px 12px;}
   .stepper{margin-top:11px;}
-  .done-mark{width:150px;}
   .done-wrap{padding:22px 4px 0;}
   .sc-line{font-size:19.5px;}
   .intro-title{font-size:25px;}
@@ -317,11 +312,9 @@ button{font-family:inherit;}
   .rc-open-inline{margin-top:7px;padding:9px;font-size:10.5px;}
 }
 @media (max-height:620px) and (max-width:520px){
-  .hd{padding:13px 18px 10px;}
-  .hd-mark{width:33px;}
+  .hd{padding:12px 18px 10px;}
   .hd-title{font-size:11px;}
   .stepper{margin-top:9px;}
-  .done-mark{width:118px;}
   .done-wrap{padding:14px 4px 0;}
   .done-h{font-size:19px;margin:9px 0 6px;}
   .done-p{font-size:12.5px;margin-bottom:12px;}
@@ -501,11 +494,9 @@ button{font-family:inherit;}
    → 폭 기반 축소는 걸리지 않으므로 별도 처리
    ============================================================ */
 @media (min-width:521px) and (max-height:700px){
-  .hd{padding:17px 20px 13px;}
-  .hd-mark{width:39px;}
+  .hd{padding:15px 20px 12px;}
   .stepper{margin-top:11px;}
   .done-wrap{padding:16px 4px 0;}
-  .done-mark{width:130px;margin-bottom:6px;}
   .done-h{font-size:19px;margin:8px 0 6px;}
   .done-p{font-size:13px;margin-bottom:12px;}
   .done-next{padding:13px 15px;}
@@ -523,7 +514,6 @@ button{font-family:inherit;}
   .nm-lead{padding:2px 0 14px;}
 }
 @media (min-width:521px) and (max-height:600px){
-  .done-mark{width:104px;}
   .done-wrap{padding:10px 4px 0;}
   .done-h{font-size:17px;}
   .done-p{font-size:12.5px;margin-bottom:10px;}

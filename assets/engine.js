@@ -144,7 +144,7 @@
     $("#body").innerHTML =
       '<div class="nm anim">' +
         '<div class="nm-lead">' +
-          '<img class="nm-logo" src="assets/img/logo.png?v=4" alt="맘풀고 · 마음을 프리하게" />' +
+          '<img class="nm-logo" src="assets/img/logo.png?v=6" alt="맘풀고 · 마음을 프리하게" />' +
           '<h1 class="nm-h">서로를 부를 이름을<br>넣어주세요</h1>' +
           '<p class="nm-p">휴대폰 한 대를 사이에 두고<br>마주 앉아 진행합니다.</p>' +
         '</div>' +
@@ -397,7 +397,7 @@
 
     $("#body").innerHTML =
       '<div class="done-wrap anim">' +
-        '<img class="done-mark" src="assets/img/mark.png?v=4" alt="" />' +
+
         '<div class="done-h">6턴, 끝까지 오셨네요</div>' +
         '<div class="done-p">' + esc(withJosa("A","과","와")) + ' ' + esc(label("B")) + ',<br>' +
         '방금 서로의 마음을 여섯 번 주고받으셨습니다.</div>' +
